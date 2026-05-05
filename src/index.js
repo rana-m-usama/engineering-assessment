@@ -40,8 +40,6 @@ const checkPort = async (port, maxPort = 65535) => {
     app.use('/api/items', require('./routes/items'));
     app.use('/api/stats', require('./routes/stats'));
 
-    require('./config/dbHandler.js').connect();
-
     /**
      * @route    [HTTP_METHOD] /api/endpoint
      * @desc     [Short summary of what this endpoint does, e.g., Reads or sets value in smart contract]
