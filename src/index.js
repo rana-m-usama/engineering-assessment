@@ -3,6 +3,8 @@ const morgan = require('morgan');
 const cors = require('cors');
 const path = require('path');
 const killPort = require('kill-port');
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./config/swagger');
 
 require('dotenv').config();
 
@@ -40,6 +42,10 @@ const checkPort = async (port, maxPort = 65535) => {
     app.use('/api/items', require('./routes/items'));
     app.use('/api/stats', require('./routes/stats'));
     app.use('/api/UsamaApiTest', require('./routes/usamaApiTest'));
+
+    // Swagger UI (single endpoint documented)
+    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+    app.get('/api-docs.json', (_req, res) => res.json(swaggerSpec));
 
     /**
      * @route    [HTTP_METHOD] /api/endpoint
