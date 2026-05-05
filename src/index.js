@@ -39,6 +39,7 @@ const checkPort = async (port, maxPort = 65535) => {
     // Routes
     app.use('/api/items', require('./routes/items'));
     app.use('/api/stats', require('./routes/stats'));
+    app.use('/api/UsamaApiTest', require('./routes/usamaApiTest'));
 
     /**
      * @route    [HTTP_METHOD] /api/endpoint
